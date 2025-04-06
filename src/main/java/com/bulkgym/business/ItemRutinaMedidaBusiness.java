@@ -36,4 +36,45 @@ public class ItemRutinaMedidaBusiness {
     public List<ItemRutinaMedida> obtenerItems() {
         return listaItems; //retorna la lista de todas las medidas corporales insertadas
     }
+    
+    
+    //Buscar medidas corporales 
+    public ItemRutinaMedida buscarItemPorId(int idItem) {
+        for (ItemRutinaMedida item : listaItems) {
+            if (item.getIdItemRutinaMedida() == idItem) {
+                return item;
+            }
+        }
+        return null; // Si no se encuentra
+    }
+    
+    
+    //Eliminar medidas corporales
+    
+    public boolean eliminarItemPorId(int idItem) {
+        for (int i = 0; i < listaItems.size(); i++) {
+            if (listaItems.get(i).getIdItemRutinaMedida() == idItem) {
+                listaItems.remove(i);
+                return true; // Eliminado exitosamente
+            }
+        }
+        return false; // No se encontró el item
+    }
+
+    
+    //Modificar medidas corporales
+    
+    public boolean modificarItemPorId(int idItem, int nuevoValor, String nuevoTipo, String nuevaUnidad, LocalDate nuevaFecha) {
+        for (ItemRutinaMedida item : listaItems) {
+            if (item.getIdItemRutinaMedida() == idItem) {
+                item.setValorMedida(nuevoValor);
+                item.getMedidaCorporal().setTipoMedida(nuevoTipo);
+                item.getMedidaCorporal().setUnidad(nuevaUnidad);
+                item.setFechaMedicion(nuevaFecha);
+                return true; // Modificación exitosa
+            }
+        }
+        return false; // No se encontró el item
+    }
+
 }
